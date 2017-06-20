@@ -1,5 +1,4 @@
 <resources>
     <string name="app_name">Myffcs</string>
-    <string name="title_activity_context">Context</string>
-    <string name="action_settings">Settings</string>
+    <string name="content">myFFCS.in is an application by GDG VIT Vellore which helps VITians to simplify the FFCS process. You can sort out subjects, slots and see if any of them are clashing well before FFCS.This will help you to be prepared on the day of FFCS with a timetable. The app will be updated with the latest subject list, So you can be sure that all the information you are getting is correct and updated. You can share the timetable you make with your friends directly from the myFFCS app.</string>
 </resources>

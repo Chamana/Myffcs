@@ -27,6 +27,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
+import gdgvitvellore.myffcs.Activities.Aboutus;
 import gdgvitvellore.myffcs.CARDVIEWS.CoursesCardView;
 import gdgvitvellore.myffcs.LOGIN.MainActivity;
 import gdgvitvellore.myffcs.GSON.RegisteredCoursesResponse;
@@ -105,7 +106,7 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.aboutUs:
-                                Toast.makeText(getContext(), "About Us", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getActivity(), Aboutus.class));
                                 break;
                             case R.id.logout:
                                 editor.putBoolean("isLoggedIn",false);
@@ -121,24 +122,6 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
         });
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_items,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.aboutUs:
-                Toast.makeText(getContext(), "About Us", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.logout:
-                Toast.makeText(getContext(), "Logout", Toast.LENGTH_SHORT).show();
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 
     private void refreshContents() {
         /**progressbar.setMessage("Refreshing..");
