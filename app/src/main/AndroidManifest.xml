@@ -37,6 +37,7 @@
             android:name=".Activities.DetailedAddCourse"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Activities.DeleteCourse" />
+        <activity android:name=".Activities.Aboutus"/>
 
     </application>
 

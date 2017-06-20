@@ -31,5 +31,6 @@ dependencies {
     compile 'com.android.volley:volley:1.0.0'
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.jpardogo.googleprogressbar:library:1.2.0'
+    compile 'com.bogdwellers:pinchtozoom:0.1'
     testCompile 'junit:junit:4.12'
 }
