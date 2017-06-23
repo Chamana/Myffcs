@@ -241,6 +241,7 @@
             gpb:type="folding_circles"
             android:visibility="gone"/>
     </RelativeLayout>
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/submit_fab"
         android:layout_width="wrap_content"
@@ -248,6 +249,6 @@
         app:fabSize="normal"
         app:backgroundTint="@color/colorPrimary"
         android:src="@drawable/done"
-        android:layout_gravity="bottom"
-        android:layout_marginBottom="5dp"/>
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="5dp" />
     </android.support.design.widget.CoordinatorLayout>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gpb="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -59,6 +60,21 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:visibility="gone"/>
+        <android.support.v7.widget.CardView
+            android:id="@+id/google_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:visibility="gone"
+            app:contentPadding="10dp"
+            android:layout_centerInParent="true"
+            app:cardCornerRadius="3dp">
+            <com.jpardogo.android.googleprogressbar.library.GoogleProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                gpb:type="google_music_dices" />
+        </android.support.v7.widget.CardView>
         <LinearLayout
             android:id="@+id/rl_tv"
             android:layout_width="match_parent"

@@ -15,6 +15,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+import android.view.View;
 
 
 import gdgvitvellore.myffcs.FRAGMENT.AddCoursesFragmet;
@@ -29,6 +32,7 @@ import gdgvitvellore.myffcs.R;
 public class HomeActivity extends AppCompatActivity {
     ViewPager vp;
     TabLayout tabs;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,8 +66,7 @@ public class HomeActivity extends AppCompatActivity {
         if (manager.getBackStackEntryCount() > 1 ) {
             manager.popBackStack();
         } else {
-            // if there is only one entry in the backstack, show the home screen
-            moveTaskToBack(true);
+
         }
     }
 

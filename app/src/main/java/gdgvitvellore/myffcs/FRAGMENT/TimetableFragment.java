@@ -7,17 +7,13 @@ import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.media.MediaBrowserCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,16 +22,17 @@ import android.view.ViewTreeObserver;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.GridLayout;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Random;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
 import gdgvitvellore.myffcs.GSON.RegisteredCoursesResponse;
@@ -47,20 +44,21 @@ import gdgvitvellore.myffcs.R;
 
 public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuthenticateListener {
 
+    public static int numDownload;
     ConnectAPI connectApi;
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     ArrayList<String> c_code,c_slot,c_venue;
     RelativeLayout tt_rl;
     GridLayout tt_gl;
     Bitmap bitmap;
-    ImageView img;
+    PhotoView img;
     int width,height;
     TextView A1L1,A1L14,B1L7,B1L20,C1L13,C1L26,D1L3,D1L19,E1L9,E1L25,F1,F1L2,G1L8,G1L21,A2L31,A2L44,B2L37,B2L50,C2L43,C2L56,D2L33,D2L49,E2L39,E2L55,F2L32,F2L45,G2L38,G2L51,TA1L27,TA2L57,TAA1L11,TAA2L41,TB1L4,TB2L34,TBB2L47,TC1L10,TC2L40,TCC2L53,TCC1L23,TD1L29,TD2L46,TDD2L59,TE1L22,TE2L52,TF1L28,TF2L58,TG1L5,TG2L35;
     TextView L6,L12,L24,L30,L36,L42,L48,L54,L60;
     FloatingActionButton show,download,share;
     Animation FabOpen,FabClose,RotateClock,RotateAntiClock;
     TextView tt_title;
-    SwipeRefreshLayout swipeRefreshLayout;
     Boolean isOpen=false;
     ProgressDialog progressDialog;
     CardView googleProgressBar;
@@ -82,6 +80,7 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
         tt_rl.setDrawingCacheEnabled(true);
         tt_rl.buildDrawingCache(true);
         tt_gl.setVisibility(View.VISIBLE);
+        try{
         tt_gl.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -92,12 +91,10 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
                 tt_gl.setVisibility(View.GONE);
             }
         });
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                connectApi.getRegisteredCourse(sharedPreferences.getString("uid",""));
-            }
-        });
+        }catch (Exception e){
+
+        }
+
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,7 +127,7 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
         c_venue=new ArrayList<String>();
         tt_rl=(RelativeLayout)v.findViewById(R.id.tt_rl);
         tt_gl=(GridLayout)v.findViewById(R.id.timetable_gl);
-        img=(ImageView)v.findViewById(R.id.img);
+        img=(PhotoView)v.findViewById(R.id.img);
         tt_title=(TextView)v.findViewById(R.id.tt_title);
         A1L1 = (TextView) v.findViewById(R.id.A1L1);
         A1L14 = (TextView) v.findViewById(R.id.A1L14);
@@ -196,14 +193,10 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
         FabClose= AnimationUtils.loadAnimation(getContext(),R.anim.fab_close);
         RotateClock= AnimationUtils.loadAnimation(getContext(),R.anim.rotate_clockwise);
         RotateAntiClock= AnimationUtils.loadAnimation(getContext(),R.anim.rotate_anticlockwise);
-        swipeRefreshLayout=(SwipeRefreshLayout)v.findViewById(R.id.swipeRefresh);
     }
 
     @Override
     public void onRequestInitiated(int code) {
-       /** progressDialog.setMessage("Updating the TimeTable..Please Wait..");
-        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        progressDialog.show();**/
         googleProgressBar.setVisibility(View.VISIBLE);
     }
 
@@ -620,6 +613,7 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
             tt_rl.post(new Runnable() {
                 @Override
                 public void run() {
+                    try {
                     tt_gl.setVisibility(View.VISIBLE);
                     bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                     tt_rl.layout(0,0,tt_rl.getLayoutParams().width,tt_rl.getLayoutParams().height);
@@ -627,6 +621,9 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
                     tt_rl.draw(c);
                     tt_gl.setVisibility(View.GONE);
                     tt_rl.setDrawingCacheEnabled(false);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                     if(bitmap!=null){
                         img.setVisibility(View.VISIBLE);
                         img.setImageBitmap(bitmap);
@@ -635,18 +632,15 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
                 }
             });
             show.setVisibility(View.VISIBLE);
-            //progressDialog.dismiss();
+            numDownload=sharedPreferences.getInt("numDownload",0);
             download.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String root=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-                    File MyDir=new File(root);
+                    String root=Environment.getExternalStorageDirectory().toString();
+                    File MyDir=new File(root+"/Myffcs");
                     MyDir.mkdirs();
-                    String filename=sharedPreferences.getString("regno","")+".jpg";
+                    String filename=sharedPreferences.getString("regno","")+numDownload+".jpg";
                     File new_file=new File(MyDir,filename);
-                    if(new_file.exists()){
-                        new_file.delete();
-                    }
                     try{
                         FileOutputStream fos=new FileOutputStream(new_file);
                         bitmap.compress(Bitmap.CompressFormat.JPEG,100,fos);
@@ -656,7 +650,12 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
                         download.setClickable(false);
                         share.setClickable(false);
                         isOpen=false;
-                        Snackbar.make(getView(),"Image Saved to Gallery Successfully",Snackbar.LENGTH_LONG).show();
+                        show.setClickable(false);
+                        Snackbar.make(getView(),"Image Saved Successfully",Snackbar.LENGTH_LONG).show();
+                        numDownload+=1;
+                        editor=sharedPreferences.edit();
+                        editor.putInt("numDownload",numDownload);
+                        editor.commit();
                         getActivity().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(new_file)));
                         fos.flush();
                         fos.close();
@@ -664,6 +663,7 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
                         e.printStackTrace();
                     }
                     getActivity().sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE));
+                    show.setClickable(true);
                 }
             });
             share.setOnClickListener(new View.OnClickListener() {
@@ -677,7 +677,6 @@ public class TimetableFragment extends Fragment implements ConnectAPI.ServerAuth
                 }
             });
             googleProgressBar.setVisibility(View.GONE);
-            swipeRefreshLayout.setRefreshing(false);
         }
     }
 

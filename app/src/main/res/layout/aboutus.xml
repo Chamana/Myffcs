@@ -9,66 +9,92 @@
         android:layout_height="0dp"
         android:layout_weight="0.85"
         android:orientation="vertical">
-    <TextView
-        android:id="@+id/title"
-        android:text="About Us"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:fontFamily="cursive"
-        android:textStyle="italic|bold"
-        android:textSize="32sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:layout_gravity="center"/>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:layout_gravity="center">
-        <ImageView
-            android:src="@drawable/gdglogo"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-        <TextView
-            android:text="GDG VIT Vellore"
-            android:textSize="25sp"
-            android:layout_margin="5dp"
-            android:textAppearance="?android:textAppearanceLarge"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/content"
-        android:layout_margin="15dp"
-        android:text="@string/content"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="13sp"
-        android:textColor="@color/black"
-        android:fontFamily="casual" />
-        <TextView
-            android:id="@+id/desc"
-            android:layout_margin="15dp"
-            android:text="@string/desc"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="13sp"
-            android:textColor="@color/black"
-            android:fontFamily="casual" />
-    </LinearLayout>
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/title"
+                android:text="About Us"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:fontFamily="cursive"
+                android:textStyle="italic|bold"
+                android:textSize="32sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.2"
+            android:gravity="center">
+            <ImageView
+                android:src="@drawable/gdglogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp" />
+            <TextView
+                android:text="GDG VIT Vellore"
+                android:textSize="25sp"
+                android:layout_margin="5dp"
+                android:textAppearance="?android:textAppearanceLarge"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.45">
+            <TextView
+                android:id="@+id/content"
+                android:layout_margin="20dp"
+                android:text="@string/content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:textColor="@color/black"
+                android:fontFamily="casual" />
+        </LinearLayout>
+        </LinearLayout>
     <LinearLayout
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.15"
-        android:background="@color/colorAccent"
+        android:background="@color/yellow"
         android:orientation="horizontal"
         android:weightSum="4">
-
+        <ImageView
+            android:id="@+id/fb"
+            android:src="@mipmap/ic_fb"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="fitCenter"
+            android:padding="10dp"/>
+        <ImageView
+            android:id="@+id/github"
+            android:src="@mipmap/ic_github"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="10dp"/>
+        <ImageView
+            android:id="@+id/gplus"
+            android:src="@mipmap/ic_gp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="10dp"/>
+        <ImageView
+            android:id="@+id/twitter"
+            android:src="@mipmap/ic_tw"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:padding="10dp"/>
 
     </LinearLayout>
 </LinearLayout>

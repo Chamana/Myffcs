@@ -1,5 +1,6 @@
 package gdgvitvellore.myffcs.LOGIN;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,7 +16,9 @@ import android.widget.Button;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
 import gdgvitvellore.myffcs.Activities.HomeActivity;
+import gdgvitvellore.myffcs.CheckInternetBroadcast;
 import gdgvitvellore.myffcs.GSON.RegisterResponse;
+import gdgvitvellore.myffcs.GSON.SigninResponse;
 import gdgvitvellore.myffcs.R;
 
 /**
@@ -29,6 +32,8 @@ public class SignupFragment extends Fragment implements ConnectAPI.ServerAuthent
     ConnectAPI connectApi;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    String name,regno,pass;
+    ProgressDialog progressDialog;
     @Override
     public View onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.signup_activity,container,false);
@@ -36,6 +41,8 @@ public class SignupFragment extends Fragment implements ConnectAPI.ServerAuthent
         regno_et=(TextInputEditText)v.findViewById(R.id.regno_et);
         password_et=(TextInputEditText)v.findViewById(R.id.pass_et);
         signup_btn=(Button)v.findViewById(R.id.signup_btn);
+        progressDialog=new ProgressDialog(getContext());
+        progressDialog.setMessage("Signing Up.Please Wait..");
         sharedPreferences=getActivity().getSharedPreferences("Prefs", Context.MODE_PRIVATE);
         connectApi=new ConnectAPI(getContext());
         connectApi.setServerAuthenticateListener(this);
@@ -46,16 +53,26 @@ public class SignupFragment extends Fragment implements ConnectAPI.ServerAuthent
                     Snackbar.make(getView(),"Please enter all the details",Snackbar.LENGTH_LONG).show();
                 }
                 else{
-                    String name=name_et.getText().toString();
-                    String regno=regno_et.getText().toString();
-                    String pass=password_et.getText().toString();
-                    connectApi.signup(name,regno,pass);
+                    checkInternet();
                 }
             }
         });
         return v;
     }
-
+    private void checkInternet() {
+        boolean isOnline= CheckInternetBroadcast.isConnected(getActivity());
+        if(isOnline){
+            progressDialog.show();
+            name=name_et.getText().toString();
+            editor=sharedPreferences.edit();
+            regno=regno_et.getText().toString();
+            pass=password_et.getText().toString();
+            connectApi.signup(name,regno,pass);
+        }
+        else{
+            Snackbar.make(getView(),"Your offline.",Snackbar.LENGTH_LONG).show();
+        }
+    }
     @Override
     public void onRequestInitiated(int code) {
 
@@ -70,21 +87,30 @@ public class SignupFragment extends Fragment implements ConnectAPI.ServerAuthent
             editor=sharedPreferences.edit();
             editor.putBoolean("isLoggedIn",true);
             editor.commit();
-            getActivity().startActivity(new Intent(getActivity(), HomeActivity.class));
+            connectApi.login(regno,pass);
         }
     }
+        if(code==ConnectAPI.login_code){
+            SigninResponse signinResponse=(SigninResponse)result;
+            if(signinResponse.getStatus().equals("true")){
+                editor.putString("uid",signinResponse.getUid());
+                editor.commit();
+                getActivity().startActivity(new Intent(getActivity(),HomeActivity.class));
+            }
+        }
     }
 
     @Override
     public void onRequestError(int code, Object result) {
-       /** if(code==ConnectAPI.signup_code){
-            if(result.equals("failed")){
-                Snackbar.make(getView(),"Signup Failed.",Snackbar.LENGTH_LONG).show();
-                name_et.setText("");
-                regno_et.setText("");
-                password_et.setText("");
-                name_et.requestFocus();
-            }
-        }**/
+      if(code==ConnectAPI.signup_code) {
+          if (result.equals("failed")) {
+              Snackbar.make(getView(), "Signup Failed.", Snackbar.LENGTH_LONG).show();
+              progressDialog.dismiss();
+              name_et.setText("");
+              regno_et.setText("");
+              password_et.setText("");
+              name_et.requestFocus();
+          }
+      }
     }
 }

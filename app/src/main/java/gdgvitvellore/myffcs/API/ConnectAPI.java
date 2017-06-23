@@ -1,6 +1,7 @@
 package gdgvitvellore.myffcs.API;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -81,11 +82,19 @@ public class ConnectAPI {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Gson gson=new Gson();
-                            RegisterResponse registerResponse=gson.fromJson(response,RegisterResponse.class);
-                            serverAuthenticateListener.onRequestCompleted(signup_code,registerResponse);
+                            Toast.makeText(context, "the signup response : " + response, Toast.LENGTH_SHORT).show();
+                            Gson gson = new Gson();
+                            RegisterResponse registerResponse = gson.fromJson(response, RegisterResponse.class);
+                            serverAuthenticateListener.onRequestCompleted(signup_code, registerResponse);
                         }
-                    }, null){
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    if(error.networkResponse.statusCode==500){
+                        serverAuthenticateListener.onRequestError(signup_code,"failed");
+                    }
+                }
+            }){
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String,String> params=new HashMap<>();

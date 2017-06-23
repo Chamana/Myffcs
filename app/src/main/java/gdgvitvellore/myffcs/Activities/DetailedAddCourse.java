@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
@@ -18,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -144,7 +147,6 @@ public class DetailedAddCourse extends Activity implements ConnectAPI.ServerAuth
             for(int i=0;i<ctype.size();i++){
                 couType=couType+ctype.get(i);
             }
-            Toast.makeText(this, "the course type"+couType, Toast.LENGTH_SHORT).show();
             if(couType.toUpperCase().equals("TH")){
                 c_type.setText("Theory Only");
             }
@@ -365,29 +367,34 @@ public class DetailedAddCourse extends Activity implements ConnectAPI.ServerAuth
             submit_fab.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    progressDialog.setMessage("Inserting...");
-                    progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                    progressDialog.show();
-                    progressDialog.setCancelable(false);
-                    if(couType.toUpperCase().equals("TH")){
-                        connectAPI.insert(sharedPreferences.getString("uid",""),selectedCourseId);
+                    if(TextUtils.isEmpty(c_slot.getText().toString())){
+                        Snackbar.make(getCurrentFocus(),"select the slot",Snackbar.LENGTH_SHORT).show();
                     }
-                    else if(couType.toUpperCase().equals("LO")){
-                        connectAPI.insert(sharedPreferences.getString("uid",""),selectedCourseId);
+                    if(TextUtils.isEmpty(c_fac.getText().toString())){
+                        Snackbar.make(getCurrentFocus(),"select the faculty",Snackbar.LENGTH_SHORT).show();
                     }
-                    else if(couType.toUpperCase().equals("ELAETH") || couType.toUpperCase().equals("ETHELA")){
-                        connectAPI.insertEmbedded(sharedPreferences.getString("uid",""),selectedCourseId,selectedCourseId1);
-                    }
-                    else if(couType.toUpperCase().equals("EPJETH") || couType.toUpperCase().equals("ETHEPJ")){
-                        connectAPI.insertEmbedded(sharedPreferences.getString("uid",""),selectedCourseId,selectedCourseId1);
-                    }else if(couType.toUpperCase().equals("EPJELA") || couType.toUpperCase().equals("ELAEPJ")){
-                        connectAPI.insertEmbedded(sharedPreferences.getString("uid",""),selectedCourseId,selectedCourseId1);
-                    }
-                    else if(couType.toUpperCase().equals("EPJELAETH") || couType.toUpperCase().equals("EPJETHELA") || couType.toUpperCase().equals("ETHELAEPJ") ||couType.toUpperCase().equals("ETHEPJELA") || couType.toUpperCase().equals("ELAETHEPJ") || couType.equals("ELAEPJETH")){
-                        connectAPI.insertEmbThLoPjCourse(sharedPreferences.getString("uid",""),selectedCourseId,selectedCourseId1,selectedCourseId2);
-                    }
-                    else{
-                        //nothing
+                    if(!TextUtils.isEmpty(c_slot.getText().toString()) && !TextUtils.isEmpty(c_fac.getText().toString())) {
+                        progressDialog.setMessage("Inserting...");
+                        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                        progressDialog.show();
+                        progressDialog.setCancelable(false);
+                        if (couType.toUpperCase().equals("TH")) {
+                            connectAPI.insert(sharedPreferences.getString("uid", ""), selectedCourseId);
+                        } else if (couType.toUpperCase().equals("LO")) {
+                            connectAPI.insert(sharedPreferences.getString("uid", ""), selectedCourseId);
+                        } else if (couType.toUpperCase().equals("ELAETH") || couType.toUpperCase().equals("ETHELA")) {
+                            connectAPI.insertEmbedded(sharedPreferences.getString("uid", ""), selectedCourseId, selectedCourseId1);
+                        } else if (couType.toUpperCase().equals("EPJETH") || couType.toUpperCase().equals("ETHEPJ")) {
+                            connectAPI.insertEmbedded(sharedPreferences.getString("uid", ""), selectedCourseId, selectedCourseId1);
+                        } else if (couType.toUpperCase().equals("EPJELA") || couType.toUpperCase().equals("ELAEPJ")) {
+                            connectAPI.insertEmbedded(sharedPreferences.getString("uid", ""), selectedCourseId, selectedCourseId1);
+                        } else if (couType.toUpperCase().equals("EPJELAETH") || couType.toUpperCase().equals("EPJETHELA") || couType.toUpperCase().equals("ETHELAEPJ") || couType.toUpperCase().equals("ETHEPJELA") || couType.toUpperCase().equals("ELAETHEPJ") || couType.equals("ELAEPJETH")) {
+                            connectAPI.insertEmbThLoPjCourse(sharedPreferences.getString("uid", ""), selectedCourseId, selectedCourseId1, selectedCourseId2);
+                        } else {
+                            //nothing
+                        }
+                    }else{
+                        Snackbar.make(getCurrentFocus(),"Check the details",Snackbar.LENGTH_SHORT).show();
                     }
 
                 }

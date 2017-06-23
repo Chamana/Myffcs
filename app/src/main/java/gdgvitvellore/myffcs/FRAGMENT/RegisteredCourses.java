@@ -7,8 +7,10 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +31,7 @@ import java.util.ArrayList;
 import gdgvitvellore.myffcs.API.ConnectAPI;
 import gdgvitvellore.myffcs.Activities.Aboutus;
 import gdgvitvellore.myffcs.CARDVIEWS.CoursesCardView;
+import gdgvitvellore.myffcs.CheckInternetBroadcast;
 import gdgvitvellore.myffcs.LOGIN.MainActivity;
 import gdgvitvellore.myffcs.GSON.RegisteredCoursesResponse;
 import gdgvitvellore.myffcs.R;
@@ -50,20 +53,24 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
     SharedPreferences.Editor editor;
     ImageView more,empty;
     ProgressDialog progressbar;
+    CardView googleProgressDialog;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v=inflater.inflate(R.layout.registered_course,container,false);
         sharedPreferences=getActivity().getSharedPreferences("Prefs", Context.MODE_PRIVATE);
         connectAPI=new ConnectAPI(getContext());
         connectAPI.setServerAuthenticateListener(this);
-        connectAPI.getRegisteredCourse(sharedPreferences.getString("uid",""));
         init(v);
+        checkInternet();
+        tv_regno.setText(sharedPreferences.getString("regno",""));
+        name.setText("Welcome "+sharedPreferences.getString("name",""));
         return v;
     }
 
     private void init(View v) {
         swipeRefreshLayout=(SwipeRefreshLayout)v.findViewById(R.id.refreshLayout);
         recyclerView=(RecyclerView)v.findViewById(R.id.courses_recview);
+        googleProgressDialog=(CardView)v.findViewById(R.id.google_progress);
         name=(TextView)v.findViewById(R.id.name);
         progressbar=new ProgressDialog(getContext());
         c_code=new ArrayList<String>();
@@ -93,6 +100,17 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
         });
     }
 
+    private void checkInternet() {
+        boolean isOnline= CheckInternetBroadcast.isConnected(getContext());
+        if(isOnline){
+            connectAPI.getRegisteredCourse(sharedPreferences.getString("uid",""));
+        }
+        else{
+            googleProgressDialog.setVisibility(View.INVISIBLE);
+            Toast.makeText(getContext(),"Your Device is offline.",Toast.LENGTH_LONG).show();
+            swipeRefreshLayout.setRefreshing(false);
+        }
+    }
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -124,10 +142,8 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
 
 
     private void refreshContents() {
-        /**progressbar.setMessage("Refreshing..");
-         progressbar.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-         progressbar.show();**/
-        connectAPI.getRegisteredCourse(sharedPreferences.getString("uid",""));
+        googleProgressDialog.setVisibility(View.VISIBLE);
+        checkInternet();
     }
 
 
@@ -166,6 +182,7 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
             int size = registeredCoursesResponse.getAllotedCourse().size();
             if(registeredCoursesResponse.getMessage().contains("no")){
                 empty.setVisibility(View.VISIBLE);
+                googleProgressDialog.setVisibility(View.GONE);
                 swipeRefreshLayout.setVisibility(View.GONE);
             }
             else{
@@ -185,7 +202,7 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
                 recyclerView.setAdapter(new CoursesCardView(c_code, c_type, c_slot, c_name, c_faculty, c_venue, c_id, c_mode, c_cred));
             }
             swipeRefreshLayout.setRefreshing(false);
-            //progressbar.dismiss();
+            googleProgressDialog.setVisibility(View.GONE);
         }
     }
 

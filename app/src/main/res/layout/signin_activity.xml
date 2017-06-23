@@ -51,7 +51,8 @@
             android:background="@drawable/btn_bgk"
             android:layout_gravity="center"
             android:paddingLeft="60dp"
-            android:paddingRight="60dp"/>
+            android:paddingRight="60dp"
+            android:foreground="?android:attr/selectableItemBackground"/>
     </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

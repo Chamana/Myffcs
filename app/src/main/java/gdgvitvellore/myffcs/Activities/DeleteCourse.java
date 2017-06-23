@@ -3,6 +3,7 @@ package gdgvitvellore.myffcs.Activities;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -30,7 +31,7 @@ import gdgvitvellore.myffcs.R;
 public class DeleteCourse extends AppCompatActivity implements ConnectAPI.ServerAuthenticateListener {
     TextInputLayout til_name;
     TextInputEditText c_name;
-    ImageView del_btn,back_btn;
+    ImageView back_btn;
     AutoCompleteTextView c_slot,c_fac,c_loc;
     TextView c_type,c_mode,c_cred,c_count;
     Bundle b;
@@ -39,6 +40,7 @@ public class DeleteCourse extends AppCompatActivity implements ConnectAPI.Server
     String id,code,name,fac,slot,venue,cred,count,type,mode,uid;
     LinearLayout ll;
     ProgressDialog progressDialog;
+    FloatingActionButton del_fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,7 @@ public class DeleteCourse extends AppCompatActivity implements ConnectAPI.Server
         progressDialog=new ProgressDialog(this);
         init();
         setInit();
-        del_btn.setOnClickListener(new View.OnClickListener() {
+        del_fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 connectApi.delete(uid,id);
@@ -107,7 +109,7 @@ public class DeleteCourse extends AppCompatActivity implements ConnectAPI.Server
         c_cred=(TextView)findViewById(R.id.tv_credit);
         c_count=(TextView)findViewById(R.id.count_tv);
         til_name=(TextInputLayout)findViewById(R.id.codename_til);
-        del_btn=(ImageView)findViewById(R.id.del_btn);
+        del_fab=(FloatingActionButton)findViewById(R.id.del_fab);
         back_btn=(ImageView)findViewById(R.id.back_btn);
         sharedPreferences=getApplicationContext().getSharedPreferences("Prefs",MODE_PRIVATE);
         connectApi=new ConnectAPI(getApplicationContext());

@@ -4,25 +4,34 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.support.annotation.BoolRes;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
 import gdgvitvellore.myffcs.Activities.HomeActivity;
+import gdgvitvellore.myffcs.CheckInternetBroadcast;
 import gdgvitvellore.myffcs.GSON.SigninResponse;
 import gdgvitvellore.myffcs.R;
+
+import static android.R.attr.button;
 
 /**
  * Created by chaman on 8/6/17.
  */
 
-public class SigninFragment extends Fragment implements ConnectAPI.ServerAuthenticateListener {
+public class SigninFragment extends Fragment implements ConnectAPI.ServerAuthenticateListener  {
 
     TextInputEditText regno,pass;
     String regno_st,pass_st;
@@ -45,13 +54,24 @@ public class SigninFragment extends Fragment implements ConnectAPI.ServerAuthent
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                regno_st=regno.getText().toString();
-                pass_st=pass.getText().toString();
-                connectApi.login(regno_st,pass_st);
+                checkInternet();
             }
         });
         return v;
     }
+
+    private void checkInternet() {
+        boolean isOnline=CheckInternetBroadcast.isConnected(getActivity());
+        if(isOnline){
+            regno_st=regno.getText().toString();
+            pass_st=pass.getText().toString();
+            connectApi.login(regno_st,pass_st);
+        }
+        else{
+            Snackbar.make(getView(),"Your offline.",Snackbar.LENGTH_LONG).show();
+        }
+    }
+
 
     @Override
     public void onRequestInitiated(int code) {
