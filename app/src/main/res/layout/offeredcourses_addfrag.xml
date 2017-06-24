@@ -20,7 +20,7 @@
                     android:id="@+id/searchView"
                     android:layout_gravity="end"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
             </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
         <RelativeLayout

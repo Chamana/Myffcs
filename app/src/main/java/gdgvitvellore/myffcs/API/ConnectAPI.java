@@ -82,7 +82,6 @@ public class ConnectAPI {
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
-                            Toast.makeText(context, "the signup response : " + response, Toast.LENGTH_SHORT).show();
                             Gson gson = new Gson();
                             RegisterResponse registerResponse = gson.fromJson(response, RegisterResponse.class);
                             serverAuthenticateListener.onRequestCompleted(signup_code, registerResponse);

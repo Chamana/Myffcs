@@ -32,7 +32,8 @@
             android:name=".Activities.DetailedAddCourse"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Activities.DeleteCourse" />
-        <activity android:name=".Activities.Aboutus"/>
+        <activity android:name=".Activities.Contactus"/>
+        <activity android:name=".Activities.AboutUs"/>
         <receiver android:name=".CheckInternetBroadcast"
             android:enabled="true">
             <intent-filter>

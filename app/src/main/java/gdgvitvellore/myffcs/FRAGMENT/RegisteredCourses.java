@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.CardView;
@@ -16,8 +15,6 @@ import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +26,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
-import gdgvitvellore.myffcs.Activities.Aboutus;
+import gdgvitvellore.myffcs.Activities.Contactus;
+import gdgvitvellore.myffcs.Activities.AboutUs;
 import gdgvitvellore.myffcs.CARDVIEWS.CoursesCardView;
 import gdgvitvellore.myffcs.CheckInternetBroadcast;
 import gdgvitvellore.myffcs.LOGIN.MainActivity;
@@ -124,7 +122,10 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()){
                             case R.id.aboutUs:
-                                startActivity(new Intent(getActivity(), Aboutus.class));
+                                startActivity(new Intent(getActivity(),AboutUs.class));
+                                break;
+                            case R.id.contactUs:
+                                startActivity(new Intent(getActivity(), Contactus.class));
                                 break;
                             case R.id.logout:
                                 editor.putBoolean("isLoggedIn",false);

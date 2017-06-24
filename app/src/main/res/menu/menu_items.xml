@@ -5,6 +5,9 @@
         android:id="@+id/aboutUs"
         android:title="About Us" />
     <item
+        android:id="@+id/contactUs"
+        android:title="Contact Us"/>
+    <item
         android:id="@+id/logout"
         android:title="Logout"/>
 

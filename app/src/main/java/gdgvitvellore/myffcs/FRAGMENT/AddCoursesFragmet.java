@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
@@ -54,6 +55,9 @@ public class AddCoursesFragmet extends Fragment implements ConnectAPI.ServerAuth
         searchView=(SearchView)v.findViewById(R.id.searchView);
         searchView.setQueryHint("Search by code/name");
         searchView.setOnQueryTextListener(this);
+        EditText searchEditText = (EditText)searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+        searchEditText.setTextColor(Color.WHITE);
+        searchEditText.setHintTextColor(Color.WHITE);
         crscd=new ArrayList<String>();
         crsnm=new ArrayList<String>();
         unique_crscd=new ArrayList<String>();
