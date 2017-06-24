@@ -374,7 +374,7 @@ public class DetailedAddCourse extends Activity implements ConnectAPI.ServerAuth
                         Snackbar.make(getCurrentFocus(),"select the faculty",Snackbar.LENGTH_SHORT).show();
                     }
                     if(!TextUtils.isEmpty(c_slot.getText().toString()) && !TextUtils.isEmpty(c_fac.getText().toString())) {
-                        progressDialog.setMessage("Inserting...");
+                        progressDialog.setMessage("Adding Course...");
                         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                         progressDialog.show();
                         progressDialog.setCancelable(false);
@@ -407,7 +407,7 @@ public class DetailedAddCourse extends Activity implements ConnectAPI.ServerAuth
                 Snackbar.make(getCurrentFocus(),insertResponse.getMessage(),Snackbar.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Inserted Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -418,7 +418,7 @@ public class DetailedAddCourse extends Activity implements ConnectAPI.ServerAuth
                 Snackbar.make(getCurrentFocus(),insertEmbRes.getMessage(),Snackbar.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Inserted Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }
@@ -429,7 +429,7 @@ public class DetailedAddCourse extends Activity implements ConnectAPI.ServerAuth
                 Snackbar.make(getCurrentFocus(),insertResponse.getMessage(),Snackbar.LENGTH_LONG).show();
             }
             else{
-                Toast.makeText(getApplicationContext(), "Inserted Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Added Successfully", Toast.LENGTH_SHORT).show();
                 finish();
             }
         }

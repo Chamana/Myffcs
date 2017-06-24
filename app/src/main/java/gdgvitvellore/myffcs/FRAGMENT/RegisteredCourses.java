@@ -26,8 +26,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
-import gdgvitvellore.myffcs.Activities.Contactus;
 import gdgvitvellore.myffcs.Activities.AboutUs;
+import gdgvitvellore.myffcs.Activities.Help;
 import gdgvitvellore.myffcs.CARDVIEWS.CoursesCardView;
 import gdgvitvellore.myffcs.CheckInternetBroadcast;
 import gdgvitvellore.myffcs.LOGIN.MainActivity;
@@ -124,12 +124,13 @@ public class RegisteredCourses extends Fragment implements ConnectAPI.ServerAuth
                             case R.id.aboutUs:
                                 startActivity(new Intent(getActivity(),AboutUs.class));
                                 break;
-                            case R.id.contactUs:
-                                startActivity(new Intent(getActivity(), Contactus.class));
+                            case R.id.help:
+                                startActivity(new Intent(getActivity(), Help.class));
                                 break;
                             case R.id.logout:
                                 editor.putBoolean("isLoggedIn",false);
                                 editor.commit();
+                                Toast.makeText(getContext(), "Logged Out Successfully!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(getActivity(), MainActivity.class));
                                 return true;
                         }
