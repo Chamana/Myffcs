@@ -46,6 +46,14 @@ public class SignupFragment extends Fragment implements ConnectAPI.ServerAuthent
         sharedPreferences=getActivity().getSharedPreferences("Prefs", Context.MODE_PRIVATE);
         connectApi=new ConnectAPI(getContext());
         connectApi.setServerAuthenticateListener(this);
+        password_et.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if(hasFocus){
+                    password_et.setError("This password can be different from VTOP Password");
+                }
+            }
+        });
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

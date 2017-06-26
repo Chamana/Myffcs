@@ -24,22 +24,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LOGIN.MainActivity"/>
+        <activity android:name=".LOGIN.MainActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.HomeActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".Activities.DetailedAddCourse"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".Activities.DeleteCourse" />
+        <activity android:name=".Activities.DeleteCourse"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".Activities.AboutUs"
-            android:parentActivityName=".Activities.HomeActivity"/>
+            android:parentActivityName=".Activities.HomeActivity"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".Activities.Help"
-            android:parentActivityName=".Activities.HomeActivity"/>
+            android:parentActivityName=".Activities.HomeActivity"
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".CheckInternetBroadcast"
             android:enabled="true">

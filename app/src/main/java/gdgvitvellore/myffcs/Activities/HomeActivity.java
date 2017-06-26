@@ -62,12 +62,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        FragmentManager manager = getSupportFragmentManager();
-        if (manager.getBackStackEntryCount() > 1 ) {
-            manager.popBackStack();
-        } else {
-
-        }
+        finishAffinity();
     }
 
     private void setupTabIcons(){
