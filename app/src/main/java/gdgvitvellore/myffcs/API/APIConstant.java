@@ -5,10 +5,10 @@ package gdgvitvellore.myffcs.API;
  */
 
 public class APIConstant {
-    public static String LOGIN_URL="http://52.51.60.178:3000/apiLogin";
-    public static String REGISTER_URL="http://52.51.60.178:3000/register";
-    public static String GETDETAILS_URL="http://52.51.60.178:3000/getcourse";
-    public static String REGISTEREDCOURSES_URL="http://52.51.60.178:3000/detail";
-    public static String INSERTCOURSE_URL="http://52.51.60.178:3000/validate";
-    public static String DELETECOURSE_URL="http://52.51.60.178:3000/deleteCourse";
+    public static String LOGIN_URL="http://54.169.254.1/apiLogin";
+    public static String REGISTER_URL="http://54.169.254.1/register";
+    public static String GETDETAILS_URL="http://54.169.254.1/getcourse";
+    public static String REGISTEREDCOURSES_URL="http://54.169.254.1/detail";
+    public static String INSERTCOURSE_URL="http://54.169.254.1/validate";
+    public static String DELETECOURSE_URL="http://54.169.254.1/deleteCourse";
 }
