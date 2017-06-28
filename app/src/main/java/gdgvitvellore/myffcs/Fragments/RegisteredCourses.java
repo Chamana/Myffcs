@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs.FRAGMENT;
+package gdgvitvellore.myffcs.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -28,10 +28,10 @@ import java.util.ArrayList;
 import gdgvitvellore.myffcs.API.ConnectAPI;
 import gdgvitvellore.myffcs.Activities.AboutUs;
 import gdgvitvellore.myffcs.Activities.Help;
-import gdgvitvellore.myffcs.CARDVIEWS.CoursesCardView;
-import gdgvitvellore.myffcs.CheckInternetBroadcast;
-import gdgvitvellore.myffcs.LOGIN.MainActivity;
-import gdgvitvellore.myffcs.GSON.RegisteredCoursesResponse;
+import gdgvitvellore.myffcs.Utils.CoursesCardView;
+import gdgvitvellore.myffcs.Utils.CheckInternetBroadcast;
+import gdgvitvellore.myffcs.Activities.MainActivity;
+import gdgvitvellore.myffcs.Actors.RegisteredCoursesResponse;
 import gdgvitvellore.myffcs.R;
 
 /**

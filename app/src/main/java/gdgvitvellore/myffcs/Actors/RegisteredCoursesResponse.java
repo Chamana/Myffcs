@@ -1,7 +1,6 @@
-package gdgvitvellore.myffcs.GSON;
+package gdgvitvellore.myffcs.Actors;
 
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

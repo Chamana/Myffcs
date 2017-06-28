@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs.FRAGMENT;
+package gdgvitvellore.myffcs.Fragments;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.Set;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
-import gdgvitvellore.myffcs.CARDVIEWS.AcCardAdapter;
-import gdgvitvellore.myffcs.GSON.CourseResponse;
+import gdgvitvellore.myffcs.Utils.AcCardAdapter;
+import gdgvitvellore.myffcs.Actors.CourseResponse;
 import gdgvitvellore.myffcs.R;
 
 /**

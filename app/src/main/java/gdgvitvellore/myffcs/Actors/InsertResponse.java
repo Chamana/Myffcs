@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs.GSON;
+package gdgvitvellore.myffcs.Actors;
 
 /**
  * Created by chaman on 13/6/17.

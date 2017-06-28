@@ -15,14 +15,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-import android.view.View;
 
 
-import gdgvitvellore.myffcs.FRAGMENT.AddCoursesFragmet;
-import gdgvitvellore.myffcs.FRAGMENT.RegisteredCourses;
-import gdgvitvellore.myffcs.FRAGMENT.TimetableFragment;
+import gdgvitvellore.myffcs.Fragments.AddCoursesFragmet;
+import gdgvitvellore.myffcs.Fragments.RegisteredCourses;
+import gdgvitvellore.myffcs.Fragments.TimetableFragment;
 import gdgvitvellore.myffcs.R;
 
 /**

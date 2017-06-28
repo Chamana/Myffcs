@@ -20,8 +20,6 @@ import android.widget.Toast;
 
 import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,8 +27,8 @@ import java.util.List;
 import java.util.Set;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
-import gdgvitvellore.myffcs.GSON.CourseResponse;
-import gdgvitvellore.myffcs.GSON.InsertResponse;
+import gdgvitvellore.myffcs.Actors.CourseResponse;
+import gdgvitvellore.myffcs.Actors.InsertResponse;
 import gdgvitvellore.myffcs.R;
 
 /**

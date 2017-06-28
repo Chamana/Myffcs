@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import gdgvitvellore.myffcs.LOGIN.MainActivity;
 import gdgvitvellore.myffcs.R;
 
 /**

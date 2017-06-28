@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LOGIN.MainActivity"
+        <activity android:name=".Activities.MainActivity"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.HomeActivity"
@@ -47,7 +47,7 @@
             android:parentActivityName=".Activities.HomeActivity"
             android:screenOrientation="portrait"/>
 
-        <receiver android:name=".CheckInternetBroadcast"
+        <receiver android:name=".Utils.CheckInternetBroadcast"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />

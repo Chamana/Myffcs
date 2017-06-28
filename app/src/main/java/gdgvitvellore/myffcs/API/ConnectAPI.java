@@ -1,7 +1,6 @@
 package gdgvitvellore.myffcs.API;
 
 import android.content.Context;
-import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -21,12 +20,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import gdgvitvellore.myffcs.GSON.CourseResponse;
-import gdgvitvellore.myffcs.GSON.DeleteResponse;
-import gdgvitvellore.myffcs.GSON.InsertResponse;
-import gdgvitvellore.myffcs.GSON.RegisterResponse;
-import gdgvitvellore.myffcs.GSON.RegisteredCoursesResponse;
-import gdgvitvellore.myffcs.GSON.SigninResponse;
+import gdgvitvellore.myffcs.Actors.CourseResponse;
+import gdgvitvellore.myffcs.Actors.DeleteResponse;
+import gdgvitvellore.myffcs.Actors.InsertResponse;
+import gdgvitvellore.myffcs.Actors.RegisterResponse;
+import gdgvitvellore.myffcs.Actors.RegisteredCoursesResponse;
+import gdgvitvellore.myffcs.Actors.SigninResponse;
 
 /**
  * Created by chaman on 8/6/17.

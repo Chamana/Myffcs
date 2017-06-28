@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs;
+package gdgvitvellore.myffcs.Utils;
 
 import android.app.Application;
 import android.content.BroadcastReceiver;

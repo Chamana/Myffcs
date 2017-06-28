@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs.LOGIN;
+package gdgvitvellore.myffcs.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -16,9 +16,9 @@ import android.widget.Button;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
 import gdgvitvellore.myffcs.Activities.HomeActivity;
-import gdgvitvellore.myffcs.CheckInternetBroadcast;
-import gdgvitvellore.myffcs.GSON.RegisterResponse;
-import gdgvitvellore.myffcs.GSON.SigninResponse;
+import gdgvitvellore.myffcs.Utils.CheckInternetBroadcast;
+import gdgvitvellore.myffcs.Actors.RegisterResponse;
+import gdgvitvellore.myffcs.Actors.SigninResponse;
 import gdgvitvellore.myffcs.R;
 
 /**

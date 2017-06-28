@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs.FRAGMENT;
+package gdgvitvellore.myffcs.Fragments;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -24,18 +24,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.GridLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
-import com.jpardogo.android.googleprogressbar.library.GoogleProgressBar;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
-import java.util.Random;
 
 import gdgvitvellore.myffcs.API.ConnectAPI;
-import gdgvitvellore.myffcs.GSON.RegisteredCoursesResponse;
+import gdgvitvellore.myffcs.Actors.RegisteredCoursesResponse;
 import gdgvitvellore.myffcs.R;
 
 /**

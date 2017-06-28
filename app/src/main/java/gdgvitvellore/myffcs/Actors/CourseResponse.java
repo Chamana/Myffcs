@@ -1,6 +1,4 @@
-package gdgvitvellore.myffcs.GSON;
-
-import java.util.List;
+package gdgvitvellore.myffcs.Actors;
 
 /**
  * Created by chaman on 11/6/17.

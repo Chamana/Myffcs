@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs.CARDVIEWS;
+package gdgvitvellore.myffcs.Utils;
 
 import android.content.Intent;
 import android.os.Bundle;

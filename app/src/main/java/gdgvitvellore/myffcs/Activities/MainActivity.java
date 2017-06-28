@@ -1,4 +1,4 @@
-package gdgvitvellore.myffcs.LOGIN;
+package gdgvitvellore.myffcs.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +13,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import gdgvitvellore.myffcs.Activities.HomeActivity;
+import gdgvitvellore.myffcs.Fragments.SigninFragment;
+import gdgvitvellore.myffcs.Fragments.SignupFragment;
 import gdgvitvellore.myffcs.R;
 
 public class MainActivity extends AppCompatActivity {
